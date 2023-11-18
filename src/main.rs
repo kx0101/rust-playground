@@ -1,16 +1,19 @@
-use tutorial::add_one;
+use std::collections::HashSet;
 
-fn main() {
-    println!("{}", add_one(0));
+pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+    let mut set: HashSet<i32> = HashSet::new();
+
+    for num in nums {
+        if set.contains(&num) {
+            return true;
+        }
+
+        set.insert(num);
+    }
+
+    false
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_add_one_in_main() {
-        assert_eq!(4, add_one(2));
-        assert_ne!(5, add_one(2));
-    }
+fn main() {
+    println!("{:#?}", contains_duplicate(vec![1, 2, 3, 1]))
 }
